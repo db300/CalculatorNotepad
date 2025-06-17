@@ -1,0 +1,71 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="CalculatorNotepad.Calculator4BaseConvert">
+  <UserControl.Styles>
+    <!-- 键盘区按钮样式 -->
+    <Style Selector="UniformGrid > Button">
+      <Setter Property="Width" Value="48"/>
+      <Setter Property="Height" Value="48"/>
+      <Setter Property="HorizontalAlignment" Value="Center"/>
+      <Setter Property="VerticalAlignment" Value="Center"/>
+      <Setter Property="FontSize" Value="24"/>
+      <Setter Property="Background" Value="#FFF"/>
+      <Setter Property="Margin" Value="8"/>
+      <Setter Property="HorizontalContentAlignment" Value="Center"/>
+      <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+  </UserControl.Styles>
+  <Grid RowDefinitions="Auto,*,Auto">
+    <!-- 进制显示区 -->
+    <StackPanel Grid.Row="0" Margin="32,32,32,0" Spacing="32">
+      <Grid ColumnDefinitions="Auto,*" Margin="0,0,0,8">
+        <Grid ColumnDefinitions="Auto,Auto">
+          <TextBlock Text="十进制" FontSize="22" FontWeight="SemiBold" Grid.Column="0" VerticalAlignment="Center"/>
+          <TextBlock Text="DEC" FontSize="22" Foreground="#999" Grid.Column="1" VerticalAlignment="Center" Margin="8,0,0,0"/>
+        </Grid>
+        <TextBlock x:Name="_txtDec" Tag="DEC" Text="0" FontSize="22" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="8,0,8,0" TextAlignment="Right" PointerPressed="TextBlock_PointerPressed"/>
+      </Grid>
+      <Grid ColumnDefinitions="Auto,*">
+        <Grid ColumnDefinitions="Auto,Auto">
+          <TextBlock Text="十六进制" FontSize="22" FontWeight="SemiBold" Grid.Column="0" VerticalAlignment="Center"/>
+          <TextBlock Text="HEX" FontSize="22" Foreground="#999" Grid.Column="1" VerticalAlignment="Center" Margin="8,0,0,0"/>
+        </Grid>
+        <TextBlock x:Name="_txtHex" Tag="HEX" Text="0" FontSize="22" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Stretch" Margin="8,0,8,0" TextAlignment="Right" PointerPressed="TextBlock_PointerPressed"/>
+      </Grid>
+    </StackPanel>
+
+    <!-- 键盘区 -->
+    <Grid Grid.Row="1" Margin="16,32,16,16" VerticalAlignment="Bottom">
+      <UniformGrid Columns="4" Rows="5" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+        <!-- 第一行 -->
+        <Button Content="C" Tag="Clear" Foreground="#FFA500" Click="KeyboardButton_Click"/>
+        <Button Content="⌫" Tag="Delete" Foreground="#FFA500" Click="KeyboardButton_Click"/>
+        <Button Content="F" Tag="Number" Click="KeyboardButton_Click" x:Name="btnF"/>
+        <Button Content="E" Tag="Number" Click="KeyboardButton_Click" x:Name="btnE"/>
+        <!-- 第二行 -->
+        <Button Content="7" Tag="Number" Click="KeyboardButton_Click"/>
+        <Button Content="8" Tag="Number" Click="KeyboardButton_Click"/>
+        <Button Content="9" Tag="Number" Click="KeyboardButton_Click"/>
+        <Button Content="D" Tag="Number" Click="KeyboardButton_Click" x:Name="btnD"/>
+        <!-- 第三行 -->
+        <Button Content="4" Tag="Number" Click="KeyboardButton_Click"/>
+        <Button Content="5" Tag="Number" Click="KeyboardButton_Click"/>
+        <Button Content="6" Tag="Number" Click="KeyboardButton_Click"/>
+        <Button Content="C" Tag="Number" Click="KeyboardButton_Click" x:Name="btnC"/>
+        <!-- 第四行 -->
+        <Button Content="1" Tag="Number" Click="KeyboardButton_Click"/>
+        <Button Content="2" Tag="Number" Click="KeyboardButton_Click"/>
+        <Button Content="3" Tag="Number" Click="KeyboardButton_Click"/>
+        <Button Content="B" Tag="Number" Click="KeyboardButton_Click" x:Name="btnB"/>
+        <!-- 第五行 -->
+        <Button Content="00" Tag="Number" Click="KeyboardButton_Click"/>
+        <Button Content="0" Tag="Number" Click="KeyboardButton_Click"/>
+        <Button Content="." Tag="Number" Click="KeyboardButton_Click"/>
+        <Button Content="A" Tag="Number" Click="KeyboardButton_Click" x:Name="btnA"/>
+      </UniformGrid>
+    </Grid>
+  </Grid>
+</UserControl>

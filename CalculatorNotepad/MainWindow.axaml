@@ -1,0 +1,37 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:modules="clr-namespace:CalculatorNotepad;assembly=CalculatorNotepad"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="CalculatorNotepad.MainWindow"
+        Title="CalculatorNotepad"
+        WindowStartupLocation="CenterScreen">
+  <Grid ColumnDefinitions="2*,1*">
+    <!-- 左侧区域 -->
+    <Grid RowDefinitions="Auto,*,Auto" Grid.Column="0">
+      <!-- 菜单栏 -->
+      <Menu>
+        <MenuItem Header="文件">
+          <MenuItem Header="新建"/>
+        </MenuItem>
+          <MenuItem Header="编辑">
+            <MenuItem Header="撤销" />
+            <MenuItem Header="重做" />
+          </MenuItem>
+      </Menu>
+      <!-- 记事本文本框 -->
+      <TextBox Grid.Row="1" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+      <!-- 状态栏 -->
+    </Grid>
+    <!-- 右侧分页控件 -->
+    <TabControl Grid.Column="1">
+      <TabItem Header="常规" FontSize="14">
+        <TextBlock Text="常规计算器功能将在此处实现" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+      </TabItem>
+      <TabItem Header="进制转换" FontSize="14">
+        <modules:Calculator4BaseConvert/>
+      </TabItem>
+    </TabControl>
+  </Grid>
+</Window>
