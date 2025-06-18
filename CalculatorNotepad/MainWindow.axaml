@@ -32,6 +32,9 @@
       <TabItem Header="进制转换" FontSize="14">
         <modules:Calculator4BaseConvert/>
       </TabItem>
+      <TabItem Header="文本/码位转换" FontSize="14">
+        <modules:Calculator4TextUnicodeConvert/>
+      </TabItem>
     </TabControl>
   </Grid>
 </Window>

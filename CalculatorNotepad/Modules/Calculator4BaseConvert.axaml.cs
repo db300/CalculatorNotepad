@@ -22,7 +22,7 @@ public partial class Calculator4BaseConvert : UserControl
             this.FindControl<Button>("btnF"),
         ];
 
-        // Ä¬ÈÏÑ¡ÖĞÊ®½øÖÆ
+        // é»˜è®¤é€‰ä¸­åè¿›åˆ¶
         SetActiveTextBlock(_txtDec);
         SetHexButtonsEnabled(false);
     }
@@ -49,7 +49,7 @@ public partial class Calculator4BaseConvert : UserControl
     }
 
     /// <summary>
-    /// ¸¨Öú·½·¨£ºÉèÖÃA~F°´Å¥µÄ¿ÉÓÃ×´Ì¬
+    /// è¾…åŠ©æ–¹æ³•ï¼šè®¾ç½®A~FæŒ‰é’®çš„å¯ç”¨çŠ¶æ€
     /// </summary>
     private void SetHexButtonsEnabled(bool enabled)
     {
