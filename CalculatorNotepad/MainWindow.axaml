@@ -18,10 +18,12 @@
           <MenuItem Header="编辑">
             <MenuItem Header="撤销" />
             <MenuItem Header="重做" />
+            <MenuItem Header="-"/>
+            <MenuItem Header="一行转多行" Click="MenuItemSplitLine_Click"/>
           </MenuItem>
       </Menu>
       <!-- 记事本文本框 -->
-      <TextBox Grid.Row="1" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
+      <TextBox x:Name="_txtNoteBook" Grid.Row="1" AcceptsReturn="True" ScrollViewer.VerticalScrollBarVisibility="Auto"/>
       <!-- 状态栏 -->
     </Grid>
     <!-- 右侧分页控件 -->

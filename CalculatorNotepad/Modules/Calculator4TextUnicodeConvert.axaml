@@ -21,7 +21,7 @@
     <TextBlock Text="Unicode(DEC)：" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,8,8" HorizontalAlignment="Right"/>
     <TextBox x:Name="_txtDecUnicode" Grid.Row="1" Grid.Column="1" VerticalAlignment="Stretch" Margin="0,0,0,8"/>
 
-    <TextBlock Text="Unicode(HEX)：" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right"/>
+    <TextBlock Text="Unicode(HEX)：" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" Margin="0,0,8,8" HorizontalAlignment="Right"/>
     <TextBox x:Name="_txtHexUnicode" Grid.Row="2" Grid.Column="1" VerticalAlignment="Stretch"/>
   </Grid>
 </UserControl>
