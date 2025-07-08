@@ -1,5 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 using Avalonia.Media;
@@ -25,6 +26,15 @@ public partial class Calculator4BaseConvert : UserControl
         // 默认选中十进制
         SetActiveTextBlock(_txtDec);
         SetHexButtonsEnabled(false);
+
+        // 允许控件聚焦以接收键盘事件
+        Focusable = true;
+        AttachedToVisualTree += (sender, e) =>
+        {
+            // 设置焦点到当前控件
+            Focus();
+        };
+        KeyDown += Calculator4BaseConvert_KeyDown;
     }
     #endregion
 
@@ -54,6 +64,16 @@ public partial class Calculator4BaseConvert : UserControl
     private void SetHexButtonsEnabled(bool enabled)
     {
         foreach (var btn in _hexButtons) btn?.SetValue(IsEnabledProperty, enabled);
+    }
+
+    private void InsertText(string text)
+    {
+        if (_activeTextBlock == null) return;
+        if (_activeTextBlock.Text == "0")
+            _activeTextBlock.Text = text;
+        else
+            _activeTextBlock.Text += text;
+        UpdateBaseConvertResult(_activeTextBlock);
     }
 
     private void UpdateBaseConvertResult(TextBlock? activeTextBlock)
@@ -115,7 +135,70 @@ public partial class Calculator4BaseConvert : UserControl
         }
     }
 
-    private void TextBlock_PointerPressed(object? sender, Avalonia.Input.PointerPressedEventArgs e)
+    private async void Calculator4BaseConvert_KeyDown(object? sender, KeyEventArgs e)
+    {
+        if (_activeTextBlock == null)
+            return;
+
+        // 处理Ctrl+C复制
+        if (e.Key == Key.C && (e.KeyModifiers & KeyModifiers.Control) == KeyModifiers.Control)
+        {
+            if (!string.IsNullOrEmpty(_activeTextBlock.Text))
+            {
+                var clipboard = TopLevel.GetTopLevel(this)?.Clipboard;
+                if (clipboard != null)
+                {
+                    await clipboard.SetTextAsync(_activeTextBlock.Text);
+                }
+            }
+            e.Handled = true;
+            return;
+        }
+
+        // 处理数字输入
+        if (e.Key >= Key.D0 && e.Key <= Key.D9)
+        {
+            string num = ((int)e.Key - (int)Key.D0).ToString();
+            InsertText(num);
+            e.Handled = true;
+            return;
+        }
+        if (e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9)
+        {
+            string num = ((int)e.Key - (int)Key.NumPad0).ToString();
+            InsertText(num);
+            e.Handled = true;
+            return;
+        }
+        // 处理A~F（仅HEX激活时）
+        if (_activeTextBlock.Tag?.ToString() == "HEX" && e.Key >= Key.A && e.Key <= Key.F)
+        {
+            string hex = ((char)('A' + (e.Key - Key.A))).ToString();
+            InsertText(hex);
+            e.Handled = true;
+            return;
+        }
+        // 处理退格
+        if (e.Key == Key.Back)
+        {
+            if (_activeTextBlock.Text?.Length > 1)
+                _activeTextBlock.Text = _activeTextBlock.Text[..^1];
+            else
+                _activeTextBlock.Text = "0";
+            UpdateBaseConvertResult(_activeTextBlock);
+            e.Handled = true;
+            return;
+        }
+        // 处理清空
+        if (e.Key == Key.Delete)
+        {
+            _txtDec.Text = _txtHex.Text = "0";
+            e.Handled = true;
+            return;
+        }
+    }
+
+    private void TextBlock_PointerPressed(object? sender, PointerPressedEventArgs e)
     {
         if (sender is not TextBlock tb || tb.Tag is not string key) return;
 

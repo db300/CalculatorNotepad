@@ -29,7 +29,7 @@
     <!-- 右侧分页控件 -->
     <TabControl Grid.Column="1">
       <TabItem Header="常规" FontSize="14">
-        <TextBlock Text="常规计算器功能将在此处实现" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <modules:Calculator4Common/>
       </TabItem>
       <TabItem Header="进制转换" FontSize="14">
         <modules:Calculator4BaseConvert/>

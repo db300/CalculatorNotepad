@@ -1,0 +1,62 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="CalculatorNotepad.Calculator4Common">
+  <UserControl.Styles>
+    <!-- 键盘区按钮样式 -->
+    <Style Selector="UniformGrid > Button">
+      <Setter Property="Width" Value="48"/>
+      <Setter Property="Height" Value="48"/>
+      <Setter Property="HorizontalAlignment" Value="Center"/>
+      <Setter Property="VerticalAlignment" Value="Center"/>
+      <Setter Property="FontSize" Value="24"/>
+      <Setter Property="Background" Value="#FFF"/>
+      <Setter Property="Margin" Value="8"/>
+      <Setter Property="HorizontalContentAlignment" Value="Center"/>
+      <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+  </UserControl.Styles>
+  <Grid RowDefinitions="*,Auto">
+    <!-- 数据显示区 -->
+    <Grid Grid.Row="0" Margin="32,32,32,0" RowDefinitions="*,Auto">
+      <!-- 计算过程显示区域，占据剩余空间 -->
+      <ScrollViewer x:Name="ProcessScrollViewer" Grid.Row="0" VerticalScrollBarVisibility="Auto">
+        <TextBlock x:Name="ProcessTextBlock" FontSize="18" TextWrapping="Wrap"/>
+      </ScrollViewer>
+      <!-- 如有其它内容可放在Grid.Row="1" -->
+    </Grid>
+
+    <!-- 键盘区 -->
+    <Grid Grid.Row="1" Margin="16,16,16,16" VerticalAlignment="Bottom">
+      <UniformGrid Columns="4" Rows="5" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+        <!-- 第一行 -->
+        <Button Content="C" Tag="Clear" Foreground="#FFA500" Click="KeyboardButton_Click"/>
+        <Button Content="⌫" Tag="Delete" Foreground="#FFA500" Click="KeyboardButton_Click"/>
+        <Button Content="%" Tag="Per" Click="KeyboardButton_Click" x:Name="btnPer"/>
+        <Button Content="÷" Tag="Div" Click="KeyboardButton_Click" x:Name="btnDiv"/>
+        <!-- 第二行 -->
+        <Button Content="7" Tag="Number" Click="KeyboardButton_Click"/>
+        <Button Content="8" Tag="Number" Click="KeyboardButton_Click"/>
+        <Button Content="9" Tag="Number" Click="KeyboardButton_Click"/>
+        <Button Content="×" Tag="Mul" Click="KeyboardButton_Click" x:Name="btnMul"/>
+        <!-- 第三行 -->
+        <Button Content="4" Tag="Number" Click="KeyboardButton_Click"/>
+        <Button Content="5" Tag="Number" Click="KeyboardButton_Click"/>
+        <Button Content="6" Tag="Number" Click="KeyboardButton_Click"/>
+        <Button Content="-" Tag="Sub" Click="KeyboardButton_Click" x:Name="btnSub"/>
+        <!-- 第四行 -->
+        <Button Content="1" Tag="Number" Click="KeyboardButton_Click"/>
+        <Button Content="2" Tag="Number" Click="KeyboardButton_Click"/>
+        <Button Content="3" Tag="Number" Click="KeyboardButton_Click"/>
+        <Button Content="+" Tag="Add" Click="KeyboardButton_Click" x:Name="btnAdd"/>
+        <!-- 第五行 -->
+        <Button Content="00" Tag="Number" Click="KeyboardButton_Click"/>
+        <Button Content="0" Tag="Number" Click="KeyboardButton_Click"/>
+        <Button Content="." Tag="Decimal" Click="KeyboardButton_Click" x:Name="btnDecimal"/>
+        <Button Content="=" Tag="Equ" Foreground="White" Background="#FFA500" Click="KeyboardButton_Click" x:Name="btnEqu"/>
+      </UniformGrid>
+    </Grid>
+  </Grid>
+</UserControl>
