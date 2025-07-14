@@ -16,10 +16,11 @@
           <MenuItem Header="新建"/>
         </MenuItem>
           <MenuItem Header="编辑">
-            <MenuItem Header="撤销" />
-            <MenuItem Header="重做" />
+            <MenuItem Header="撤销" Click="MenuItemUndo_Click" InputGesture="Ctrl+Z"/>
+            <MenuItem Header="重做" Click="MenuItemRedo_Click" InputGesture="Ctrl+Y"/>
             <MenuItem Header="-"/>
             <MenuItem Header="一行转多行" Click="MenuItemSplitLine_Click"/>
+            <MenuItem Header="多行转一行" Click="MenuItemMergeLines_Click"/>
           </MenuItem>
       </Menu>
       <!-- 记事本文本框 -->
